@@ -171,14 +171,14 @@ jobs:
         
         
     - name: Assemble artifact
-        run: |
+      run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
           find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
           find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
 
 
-   - name: Upload firmware to release
+    - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
